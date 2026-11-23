@@ -19,7 +19,7 @@
                 <div class="c-primaryCol">
                     {% if not usd %}
                         <div class="alert alert-danger" id="blokbay-currency-warning" role="alert">
-                            {{ 'blokbay_payment.admin.usd_required'|trans({'%currency%': currency}) }}
+                            {{ 'blokbay_payment.admin.currency_required'|trans({'%currency%': currency, '%currencies%': currencies}) }}
                         </div>
                     {% endif %}
                     <div class="card rounded border-0 mb-4">

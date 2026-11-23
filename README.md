@@ -9,9 +9,10 @@ Japanese instructions: README.ja.md
 ## Requirements
 
 - EC-CUBE 4.2 or 4.3 (plugin code `BlokbayPayment`).
-- Shop currency **USD**. The Blokbay API works in USD only and the plugin does not convert currencies. In `.env` set
-  `ECCUBE_CURRENCY=USD`. With another currency (for example JPY) the payment method stays hidden at checkout and the
-  settings page shows a warning.
+- Shop currency (`ECCUBE_CURRENCY` in `.env`): JPY, USD, EUR, GBP, CHF, CAD, AUD, SGD, HKD or AED. The order total is sent
+  in the shop currency (JPY without decimals) and the customer pays in crypto at the current public exchange rate, locked
+  when the customer chooses the coin. With another currency the payment method stays hidden at checkout and the settings
+  page shows a warning.
 - A public https address for the webhook.
 
 ## Install

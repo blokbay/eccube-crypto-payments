@@ -9,6 +9,7 @@ namespace Plugin\BlokbayPayment\Controller\Admin;
 
 use Eccube\Controller\AbstractController;
 use Eccube\Repository\PaymentRepository;
+use Plugin\BlokbayPayment\Service\BlokbayApi;
 use Plugin\BlokbayPayment\Form\Type\Admin\ConfigType;
 use Plugin\BlokbayPayment\Repository\ConfigRepository;
 use Plugin\BlokbayPayment\Service\Method\BlokbayCrypto;
@@ -45,7 +46,7 @@ class ConfigController extends AbstractController
         $form->get('public_key')->setData($Config->getPublicKey());
         $form->get('api_base')->setData($Config->getApiBase());
         $form->handleRequest($request);
-        $usd = $this->updater->shopCurrency() === 'USD';
+        $usd = BlokbayApi::supported($this->updater->shopCurrency()); // shop currency accepted by Blokbay
 
         if ($form->isSubmitted() && $form->isValid()) {
             $sk = trim((string) $form->get('secret_key')->getData());
@@ -59,7 +60,7 @@ class ConfigController extends AbstractController
             $Config->setPublicKey(trim((string) $form->get('public_key')->getData()));
             $Config->setApiBase(rtrim(trim((string) $form->get('api_base')->getData()), '/'));
             $this->entityManager->persist($Config);
-            // The payment method is shown at checkout only when the shop works in USD and the keys are saved.
+            // The payment method is shown at checkout only when the shop currency is accepted by Blokbay and the keys are saved.
             $Payment = $this->paymentRepository->findOneBy(['method_class' => BlokbayCrypto::class]);
             if ($Payment) {
                 $Payment->setVisible($usd && $Config->isReady());
@@ -74,6 +75,7 @@ class ConfigController extends AbstractController
             'form' => $form->createView(),
             'Config' => $Config,
             'usd' => $usd,
+            'currencies' => implode(', ', array_keys(BlokbayApi::CURRENCIES)),
             'currency' => $this->updater->shopCurrency(),
             'has_secret' => $Config->getSecretKey() !== '',
             'has_webhook' => $Config->getWebhookSecret() !== '',

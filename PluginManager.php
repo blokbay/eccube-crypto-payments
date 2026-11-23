@@ -14,6 +14,7 @@ use Eccube\Entity\Payment;
 use Eccube\Entity\PaymentOption;
 use Eccube\Plugin\AbstractPluginManager;
 use Plugin\BlokbayPayment\Entity\Config;
+use Plugin\BlokbayPayment\Service\BlokbayApi;
 use Plugin\BlokbayPayment\Service\Method\BlokbayCrypto;
 use Psr\Container\ContainerInterface;
 
@@ -59,8 +60,8 @@ class PluginManager extends AbstractPluginManager
                 $em->persist($Option);
             }
         }
-        // Visible only with the keys saved and a USD shop: the Blokbay API works in USD only.
-        $Payment->setVisible($currency === 'USD' && $Config->isReady());
+        // Visible only with the keys saved and a shop currency accepted by Blokbay (USD, EUR, GBP, CHF, JPY, CAD, AUD, SGD, HKD, AED).
+        $Payment->setVisible(BlokbayApi::supported($currency) && $Config->isReady());
         $em->flush();
     }
 

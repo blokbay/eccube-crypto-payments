@@ -12,18 +12,18 @@ blokbay_payment.admin.not_saved: Not saved yet.
 blokbay_payment.admin.webhook: Webhook
 blokbay_payment.admin.webhook_help: 'In the Blokbay dashboard, set this webhook URL (https, reachable from the internet):'
 blokbay_payment.admin.events: 'Events: payment.paid marks the order as paid, payment.expired cancels an order still waiting for payment, ping checks the connection.'
-blokbay_payment.admin.usd_required: 'Blokbay payments are in USD only and this shop works in %currency%. The payment method stays hidden at checkout until the shop currency is USD (ECCUBE_CURRENCY=USD in .env). No currency conversion is applied.'
+blokbay_payment.admin.currency_required: 'Blokbay accepts prices in %currencies% and this shop works in %currency%. The payment method stays hidden at checkout until the shop currency (ECCUBE_CURRENCY in .env) is one of these.'
 blokbay_payment.admin.save: Save
 blokbay_payment.admin.back: Back to plugins
 blokbay_payment.admin.saved: 'Settings saved. The crypto payment method is now available at checkout.'
-blokbay_payment.admin.saved_hidden: 'Settings saved. The payment method stays hidden: it needs the secret key, the webhook signing secret and a shop in USD.'
+blokbay_payment.admin.saved_hidden: 'Settings saved. The payment method stays hidden: it needs the secret key, the webhook signing secret and a shop currency accepted by Blokbay.'
 blokbay_payment.admin.err_secret_key: 'The secret key starts with sk_live_ followed by letters and digits.'
 blokbay_payment.admin.err_public_key: 'The public key starts with pk_live_.'
 blokbay_payment.admin.err_webhook_secret: 'The webhook signing secret starts with whsec_.'
 blokbay_payment.admin.err_api_base: 'Use an https address (http only for localhost).'
-blokbay_payment.front.usd_only: 'Crypto payment is available only for orders in USD. Please choose another payment method.'
+blokbay_payment.front.currency_only: 'Crypto payment is not available for orders in this currency. Please choose another payment method.'
 blokbay_payment.front.not_configured: 'Crypto payment is not available right now. Please choose another payment method.'
-blokbay_payment.front.min_amount: 'Crypto payment is available from 1.00 USD.'
+blokbay_payment.front.min_amount: 'Crypto payment is available from the equivalent of 1.00 USD.'
 blokbay_payment.front.create_failed: 'The crypto payment could not be started. Your cart is unchanged: please try again or choose another payment method.'
 blokbay_payment.front.cancelled: 'Payment not completed. Your cart is unchanged: you can pay now or choose another payment method.'
 blokbay_payment.front.expired: 'The payment time has expired. Your cart is unchanged: please place the order again.'

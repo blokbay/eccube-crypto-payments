@@ -31,10 +31,24 @@ class BlokbayApi
         $this->transport = $transport;
     }
 
-    /** USD amount with 2 decimals, as a string ("249.90"). */
-    public static function amount($value)
+    /**
+     * Currencies accepted by the Blokbay API, with their decimals (JPY has none). The buyer pays in crypto at the current
+     * exchange rate; amount and currency come back in the payment and in webhooks exactly as sent.
+     */
+    const CURRENCIES = ['USD' => 2, 'EUR' => 2, 'GBP' => 2, 'CHF' => 2, 'JPY' => 0, 'CAD' => 2, 'AUD' => 2, 'SGD' => 2, 'HKD' => 2, 'AED' => 2];
+
+    public static function supported($currency)
     {
-        return number_format(round((float) $value, 2), 2, '.', '');
+        return isset(self::CURRENCIES[strtoupper((string) $currency)]);
+    }
+
+    /** Amount with the decimals of the currency, as a string ("249.90", JPY "25000"). */
+    public static function amount($value, $currency = 'USD')
+    {
+        $code = strtoupper((string) $currency);
+        $dec = isset(self::CURRENCIES[$code]) ? self::CURRENCIES[$code] : 2;
+
+        return number_format(round((float) $value, $dec), $dec, '.', '');
     }
 
     /** Secret key format: sk_live_ + letters and digits (Blokbay issues 48 hex characters). Same rule as the other Blokbay plugins. */

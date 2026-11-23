@@ -99,7 +99,7 @@ class OrderUpdater
         return new BlokbayApi($c->getSecretKey(), $c->getApiBase() !== '' ? $c->getApiBase() : BlokbayApi::DEFAULT_BASE);
     }
 
-    /** Shop currency (ECCUBE_CURRENCY). The Blokbay API works in USD only. */
+    /** Shop currency (ECCUBE_CURRENCY): the order currency sent to Blokbay (USD, EUR, GBP, CHF, JPY, CAD, AUD, SGD, HKD, AED). */
     public function shopCurrency()
     {
         return strtoupper((string) $this->eccubeConfig->get('currency'));
@@ -127,8 +127,9 @@ class OrderUpdater
         if ($status === 'paid') {
             $amount = (string) (isset($p['amount']) ? $p['amount'] : '');
             $currency = (string) (isset($p['currency']) ? $p['currency'] : '');
-            if ($tx->getAmount() === '' || $amount !== $tx->getAmount() || $currency !== 'USD') {
-                $this->note($Order, 'Blokbay: payment '.$tx->getPaymentId().' reported '.$amount.' '.$currency.', expected '.$tx->getAmount().' USD. Not marked as paid.');
+            $expected = strtoupper((string) $Order->getCurrencyCode()) ?: $this->shopCurrency();
+            if ($tx->getAmount() === '' || $amount !== $tx->getAmount() || $currency !== $expected) {
+                $this->note($Order, 'Blokbay: payment '.$tx->getPaymentId().' reported '.$amount.' '.$currency.', expected '.$tx->getAmount().' '.$expected.'. Not marked as paid.');
                 $this->em->flush();
 
                 return 'amount mismatch';
@@ -217,7 +218,7 @@ class OrderUpdater
         if (in_array($sid, [OrderStatus::PAID, OrderStatus::IN_PROGRESS, OrderStatus::DELIVERED, OrderStatus::RETURNED], true)) {
             return 'already paid';
         }
-        $info = 'Blokbay: paid '.$tx->getAmount().' USD';
+        $info = 'Blokbay: paid '.$tx->getAmount().' '.(strtoupper((string) $Order->getCurrencyCode()) ?: $this->shopCurrency());
         if (!empty($p['coin']) && is_string($p['coin'])) {
             $info .= ' in '.$p['coin'];
         }

@@ -76,9 +76,9 @@ class BlokbayCrypto implements PaymentMethodInterface
         $errors = [];
         if (!$this->updater->config()->isReady()) {
             $errors[] = 'blokbay_payment.front.not_configured';
-        } elseif (strtoupper((string) $this->Order->getCurrencyCode()) !== 'USD' || $this->updater->shopCurrency() !== 'USD') {
-            $errors[] = 'blokbay_payment.front.usd_only';
-        } elseif ((float) $this->Order->getPaymentTotal() < (float) BlokbayApi::MIN_AMOUNT) {
+        } elseif (!BlokbayApi::supported($this->Order->getCurrencyCode()) || strtoupper((string) $this->Order->getCurrencyCode()) !== $this->updater->shopCurrency()) {
+            $errors[] = 'blokbay_payment.front.currency_only';
+        } elseif ($this->updater->shopCurrency() === 'USD' && (float) $this->Order->getPaymentTotal() < (float) BlokbayApi::MIN_AMOUNT) {
             $errors[] = 'blokbay_payment.front.min_amount';
         }
 
@@ -104,18 +104,19 @@ class BlokbayCrypto implements PaymentMethodInterface
             return $this->backToShopping($errors[0]);
         }
         $Order = $this->Order;
-        $amount = BlokbayApi::amount($Order->getPaymentTotal());
+        $currency = $this->updater->shopCurrency();
+        $amount = BlokbayApi::amount($Order->getPaymentTotal(), $currency);
         $previous = $this->transactionRepository->findByOrder($Order->getId());
         $no = (string) $Order->getOrderNo();
         $res = $this->updater->api()->createPayment([
             'amount' => $amount,
-            'currency' => 'USD',
+            'currency' => $currency,
             'reference' => $no,
             'description' => 'Order '.$no,
             'customer_email' => (string) $Order->getEmail(),
             'url_success' => $this->urls->generate('blokbay_payment_return', ['no' => $no], UrlGeneratorInterface::ABSOLUTE_URL),
             'url_cancel' => $this->urls->generate('blokbay_payment_cancel', ['no' => $no], UrlGeneratorInterface::ABSOLUTE_URL),
-        ], 'eccube-'.$Order->getId().'-'.$amount.'-'.count($previous));
+        ], 'eccube-'.$Order->getId().'-'.$amount.($currency === 'USD' ? '' : '-'.$currency).'-'.count($previous));
         if (empty($res['id']) || empty($res['url']) || !is_string($res['id']) || !is_string($res['url'])
             || !preg_match('/^gp_[a-z0-9]+$/', $res['id']) || !preg_match('#^https?://#', $res['url'])) {
             $err = isset($res['error']) && is_string($res['error']) ? $res['error'] : 'error';
