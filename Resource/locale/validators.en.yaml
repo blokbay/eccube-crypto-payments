@@ -1,0 +1,4 @@
+blokbay_payment.admin.err_secret_key: 'The secret key starts with sk_live_ followed by letters and digits.'
+blokbay_payment.admin.err_public_key: 'The public key starts with pk_live_.'
+blokbay_payment.admin.err_webhook_secret: 'The webhook signing secret starts with whsec_.'
+blokbay_payment.admin.err_api_base: 'Use an https address (http only for localhost).'

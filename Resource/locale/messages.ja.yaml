@@ -1,0 +1,29 @@
+blokbay_payment.admin.title: Blokbay 暗号資産決済
+blokbay_payment.admin.sub_title: 設定
+blokbay_payment.admin.keys: APIキー
+blokbay_payment.admin.keys_help: 'Blokbay のダッシュボード（サイトからの支払い）で無料でキーを作成し、ここに貼り付けてください。代金はご自身のウォレットに直接届きます。'
+blokbay_payment.admin.secret_key: シークレットキー
+blokbay_payment.admin.public_key: 公開キー
+blokbay_payment.admin.webhook_secret: Webhook 署名シークレット
+blokbay_payment.admin.api_base: API ベースURL
+blokbay_payment.admin.api_base_help: '空欄の場合は https://blokbay.com を使用します。'
+blokbay_payment.admin.saved_keep: '保存済みです。変更しない場合は空欄のままにしてください。'
+blokbay_payment.admin.not_saved: まだ保存されていません。
+blokbay_payment.admin.webhook: Webhook
+blokbay_payment.admin.webhook_help: 'Blokbay のダッシュボードに、次の Webhook URL（インターネットから接続できる https）を設定してください：'
+blokbay_payment.admin.events: 'イベント：payment.paid で受注を入金済みにし、payment.expired で決済待ちの受注を取り消します。ping は接続の確認です。'
+blokbay_payment.admin.usd_required: 'Blokbay の決済は USD のみに対応しています。このショップの通貨は %currency% です。ショップの通貨が USD（.env の ECCUBE_CURRENCY=USD）になるまで、この支払方法は注文手続き画面に表示されません。通貨の換算は行いません。'
+blokbay_payment.admin.save: 登録
+blokbay_payment.admin.back: プラグイン一覧に戻る
+blokbay_payment.admin.saved: '設定を保存しました。暗号資産決済が注文手続き画面で利用できるようになりました。'
+blokbay_payment.admin.saved_hidden: '設定を保存しました。この支払方法は非表示のままです。シークレットキー、Webhook 署名シークレット、USD のショップが必要です。'
+blokbay_payment.admin.err_secret_key: 'シークレットキーは sk_live_ に続く英数字です。'
+blokbay_payment.admin.err_public_key: '公開キーは pk_live_ で始まります。'
+blokbay_payment.admin.err_webhook_secret: 'Webhook 署名シークレットは whsec_ で始まります。'
+blokbay_payment.admin.err_api_base: 'https のアドレスを入力してください（http は localhost のみ）。'
+blokbay_payment.front.usd_only: '暗号資産決済は USD のご注文のみご利用いただけます。別の支払方法をお選びください。'
+blokbay_payment.front.not_configured: '現在、暗号資産決済はご利用いただけません。別の支払方法をお選びください。'
+blokbay_payment.front.min_amount: '暗号資産決済は 1.00 USD からご利用いただけます。'
+blokbay_payment.front.create_failed: '暗号資産決済を開始できませんでした。カートの内容はそのままです。もう一度お試しいただくか、別の支払方法をお選びください。'
+blokbay_payment.front.cancelled: 'お支払いは完了していません。カートの内容はそのままです。このままお支払いいただくか、別の支払方法をお選びください。'
+blokbay_payment.front.expired: 'お支払いの期限が切れました。カートの内容はそのままです。もう一度ご注文ください。'

@@ -1,0 +1,4 @@
+blokbay_payment.admin.err_secret_key: 'シークレットキーは sk_live_ に続く英数字です。'
+blokbay_payment.admin.err_public_key: '公開キーは pk_live_ で始まります。'
+blokbay_payment.admin.err_webhook_secret: 'Webhook 署名シークレットは whsec_ で始まります。'
+blokbay_payment.admin.err_api_base: 'https のアドレスを入力してください（http は localhost のみ）。'

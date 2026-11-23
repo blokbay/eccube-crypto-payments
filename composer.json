@@ -1,0 +1,20 @@
+{
+    "name": "blokbay/eccube-payment",
+    "version": "1.0.0",
+    "description": "Blokbay crypto payments",
+    "type": "eccube-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Blokbay",
+            "email": "mail@blokbay.com",
+            "homepage": "https://blokbay.com"
+        }
+    ],
+    "require": {
+        "ec-cube/plugin-installer": "^2.0"
+    },
+    "extra": {
+        "code": "BlokbayPayment"
+    }
+}
