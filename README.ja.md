@@ -1,7 +1,11 @@
 # Blokbay 暗号資産決済 for EC-CUBE 4.2 / 4.3
 
-EC-CUBE のショップで Bitcoin（BTC）、USDC、USDT、ETH による支払いを受け付けます。注文手続きでお客様は安全な Blokbay の
-支払いページに移動し、お好きなウォレットから支払います。代金はショップ様ご自身のウォレットに直接届き、Blokbay が資金を預かることはありません。
+EC-CUBE のショップで USDT、USDC、ETH、BTC、SOL による支払いを受け付けます。注文手続きでお客様は安全な Blokbay の
+支払いページに移動し、ご自身のウォレットや取引所から支払います。代金はショップ様ご自身のウォレットに直接届き、Blokbay が資金を預かることはありません。
+
+対応通貨とネットワーク：Ethereum、BNB Smart Chain、Arbitrum、Polygon、Solana 上の USDT と USDC、Base 上の USDC、
+Ethereum、Base、Arbitrum 上の ETH、Solana 上の SOL、Bitcoin（100 USD 相当から）。お客様は接続したウォレットから、
+またはアドレスと QR コードを使ってお好きなウォレットや取引所から支払えます。支払い前に通貨とネットワークを変更できます。
 
 料金：お支払いごとに 1%（自動で差し引き）。月額費用・初期費用はありません。
 
@@ -39,5 +43,10 @@ EC-CUBE のショップで Bitcoin（BTC）、USDC、USDT、ETH による支払�
 ## サポート
 
 mail@blokbay.com 、ドキュメント https://blokbay.com/docs/api
+
+## 変更履歴
+
+- 1.2.0：説明文を更新（USDT、USDC、ETH、BTC、SOL、ウォレットまたは取引所からの支払い）。プラグインの動作に変更はありません。
+- 1.1.0：ショップの通貨 JPY、USD、EUR、GBP、CHF、CAD、AUD、SGD、HKD、AED に対応。
 
 ライセンス：MIT。作者：Blokbay。

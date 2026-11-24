@@ -1,7 +1,11 @@
 # Blokbay crypto payments for EC-CUBE 4.2 / 4.3
 
-Accept Bitcoin (BTC), USDC, USDT and ETH in your EC-CUBE shop. At checkout the customer is sent to the secure Blokbay payment
-page, pays from any wallet, and the money goes straight to your own wallet. Blokbay never holds your funds.
+Accept USDT, USDC, ETH, BTC and SOL in your EC-CUBE shop. At checkout the customer is sent to the secure Blokbay payment
+page, pays from their wallet or an exchange, and the money goes straight to your own wallet. Blokbay never holds your funds.
+
+Coins and networks on the payment page: USDT and USDC on Ethereum, BNB Smart Chain, Arbitrum, Polygon and Solana; USDC on Base;
+ETH on Ethereum, Base and Arbitrum; SOL on Solana; Bitcoin (from the equivalent of 100 USD). The customer pays from a connected
+wallet, or by address and QR code from any wallet or exchange, and can change coin and network before paying.
 
 Pricing: 1% of each payment, withheld automatically. No monthly fee, no setup fee.
 Japanese instructions: README.ja.md
@@ -41,5 +45,10 @@ Japanese instructions: README.ja.md
 ## Support
 
 mail@blokbay.com, documentation https://blokbay.com/docs/api
+
+## Changelog
+
+- 1.2.0: updated texts (USDT, USDC, ETH, BTC and SOL; payment from a wallet or an exchange). No change to how the plugin works.
+- 1.1.0: shop currencies JPY, USD, EUR, GBP, CHF, CAD, AUD, SGD, HKD and AED.
 
 License: MIT. Author: Blokbay.

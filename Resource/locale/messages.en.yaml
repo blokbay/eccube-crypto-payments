@@ -1,7 +1,7 @@
 blokbay_payment.admin.title: Blokbay crypto payments
 blokbay_payment.admin.sub_title: Settings
 blokbay_payment.admin.keys: API keys
-blokbay_payment.admin.keys_help: 'Create your keys for free in the Blokbay dashboard (Payments from your site) and paste them here. Funds go straight to your own wallet.'
+blokbay_payment.admin.keys_help: 'Create your keys for free in the Blokbay dashboard (Payments from your site) and paste them here. Funds go straight to your own wallet. Your customers pay in USDT, USDC, ETH, BTC or SOL, from their wallet or an exchange.'
 blokbay_payment.admin.secret_key: Secret key
 blokbay_payment.admin.public_key: Public key
 blokbay_payment.admin.webhook_secret: Webhook signing secret

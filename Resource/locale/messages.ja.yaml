@@ -1,7 +1,7 @@
 blokbay_payment.admin.title: Blokbay 暗号資産決済
 blokbay_payment.admin.sub_title: 設定
 blokbay_payment.admin.keys: APIキー
-blokbay_payment.admin.keys_help: 'Blokbay のダッシュボード（サイトからの支払い）で無料でキーを作成し、ここに貼り付けてください。代金はご自身のウォレットに直接届きます。'
+blokbay_payment.admin.keys_help: 'Blokbay のダッシュボード（サイトからの支払い）で無料でキーを作成し、ここに貼り付けてください。代金はご自身のウォレットに直接届きます。お客様は USDT、USDC、ETH、BTC または SOL で、ご自身のウォレットや取引所から支払えます。'
 blokbay_payment.admin.secret_key: シークレットキー
 blokbay_payment.admin.public_key: 公開キー
 blokbay_payment.admin.webhook_secret: Webhook 署名シークレット

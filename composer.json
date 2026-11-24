@@ -1,7 +1,7 @@
 {
     "name": "blokbay/eccube-payment",
-    "version": "1.1.0",
-    "description": "Blokbay crypto payments",
+    "version": "1.2.0",
+    "description": "Blokbay crypto payments: USDT, USDC, ETH, BTC and SOL, paid straight to your own wallet",
     "type": "eccube-plugin",
     "license": "MIT",
     "authors": [
